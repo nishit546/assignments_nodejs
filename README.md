@@ -3,8 +3,7 @@
 ## Project Title
 Student Management System API - Assignment 1 Node.js
 
-## Objective
-To build a RESTful API using Node.js and Express to manage and retrieve student records. The API allows getting a list of all students, finding the top-performing student, calculating the average CGPA, getting the total count of students, and filtering records by ID or branch.
+
 
 ## List of implemented routes
 - `GET /` : Welcome message.
