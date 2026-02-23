@@ -75,7 +75,7 @@ const students = [
 ];
 
 app.get("/" , (req,res)=>{
-  res.json("Welcome to get all students management system you can get all students by /student")
+  res.json("Welcome to get all students management system you can get all students by /students")
 })
 app.get("/students",(req,res)=>{
     res.json(students);
