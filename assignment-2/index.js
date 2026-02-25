@@ -62,7 +62,119 @@ if(productCategory.length === 0){
 }
 res.json(productCategory);
 })
+app.post("/products", (req, res) => {
+  const { name, category, price, stock, rating } = req.body;
 
+  if (!name || !category || price == null || stock == null) {
+    return res.status(400).json({
+      message: "name, category, price and stock are required"
+    });
+  }
+
+  const newId = products.length > 0 ? products[products.length - 1].id + 1 : 1;
+
+
+  const newProduct = {
+    id: newId,
+    name,
+    category,
+    price,
+    stock,
+    rating: rating 
+  };
+
+  products.push(newProduct);
+
+  res.status(201).json({
+    message: "Product added successfully",
+    data: newProduct
+  });
+});
+
+
+app.put("/products/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  const index = products.findIndex(p => p.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({
+      message: "Product not found"
+    });
+  }
+
+  const { name, category, price, stock, rating } = req.body;
+
+  if (!name || !category || price == null || stock == null) {
+    return res.status(400).json({
+      message: "All fields (name, category, price, stock) are required"
+    });
+  }
+
+  const updatedProduct = {
+    id: id,
+    name,
+    category,
+    price,
+    stock,
+    rating: rating 
+   
+  };
+  products[index] = updatedProduct;
+
+  res.status(200).json({
+    message: "Product replaced successfully",
+    data: updatedProduct
+  });
+});
+app.put("/products/:id/stock", (req, res) => {
+
+  const id = Number(req.params.id);
+  const { stock } = req.body;
+
+  const product = products.find(p => p.id === id);
+
+  if (!product) {
+    return res.status(404).json({
+      message: "Product not found"
+    });
+  }
+
+  if (stock == null || stock < 0) {
+    return res.status(400).json({
+      message: "Valid stock value is required"
+    });
+  }
+
+  product.stock = stock;
+
+  res.status(200).json({
+    message: "Stock updated successfully",
+    data: product
+  });
+});
+app.put("/products/:id/price", (req, res) => {
+
+  const id = Number(req.params.id);
+  const { price } = req.body;
+
+  const product = products.find(p => p.id === id);
+
+  if (!product) {
+    return res.status(404).json({
+      message: "Product not found"
+    });
+  }
+
+ 
+
+  product.price = price;
+
+  res.status(200).json({
+    message: "Price updated successfully",
+    data: product
+  });
+});
 app.listen(3000 , () =>{
     console.log("Server running at http://localhost:3000")
-})
+}) 
