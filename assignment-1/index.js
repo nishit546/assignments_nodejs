@@ -75,19 +75,33 @@ const students = [
 ];
 
 app.get("/" , (req,res)=>{
-  res.json("Welcome to get all students management system you can get all students by /students")
+  res.json("Welcome. To get all students management system you can get all students by /students")
 })
 app.get("/students",(req,res)=>{
     res.json(students);
-})
+});
+
+
+
 app.get("/students/topper",(req,res)=>{
     res.json(students.reduce((max,student)=>{
         return student.cgpa > max ? student : max;
     },-Infinity));
+
+
  app.get("/students/average" , (req,res)=>{
-    const total = students.reduce((sum , student)=>{
-        return sum + student.cgpa;
-    },0)
+
+    // const total = students.reduce((sum , student)=>{
+    //     return sum + student.cgpa;
+    // },0)
+    let total = 0;
+students.forEach(student => {
+  total+=student.cgpa;
+});
+for(let i = 0;i<students.length;i++){
+total += students[i].cgpa;
+}
+
     const average = total / students.length;
     res.json({averageCGPA :Number(average.toFixed(2))});
  })
