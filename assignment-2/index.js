@@ -140,11 +140,7 @@ app.put("/products/:id/stock", (req, res) => {
     });
   }
 
-  if (stock == null || stock < 0) {
-    return res.status(400).json({
-      message: "Valid stock value is required"
-    });
-  }
+ 
 
   product.stock = stock;
 
