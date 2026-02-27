@@ -98,3 +98,63 @@ You can test the API endpoints locally after starting the server:
 ## Deployed link
 - **Live Server URL:** [https://assignments-nodejs-1.onrender.com/](https://assignments-nodejs-1.onrender.com/)
 - **Postman Documentation:** [https://documenter.getpostman.com/view/50840636/2sBXcGEzye](https://documenter.getpostman.com/view/50840636/2sBXcGEzye)
+
+
+# State Management System API (Assignment 3)
+
+## Project Title
+State Management System API - Assignment 3 Node.js
+
+## List of implemented routes
+- `GET /` : Welcome message.
+- `GET /states` : Retrieve the list of all states.
+- `GET /states/highest-gdp` : Retrieve the state with the highest GDP.
+- `GET /states/:id` : Retrieve a specific state by its ID.
+- `POST /states` : Add a new state. Requires `name`, `population`, `literacyRate`, `annualBudget`, and `gdp` in the request body.
+- `PUT /states/:id` : Replace an entire state by its ID. Requires `name`, `population`, `literacyRate`, `annualBudget`, and `gdp`.
+- `PUT /states/:id/budget` : Update only the annual budget of a specific state. Requires `annualBudget` in the request body.
+- `PUT /states/:id/population` : Update only the population of a specific state. Requires `population` in the request body.
+- `PATCH /states/:id/literacy` : Update only the literacy rate of a specific state. Requires `literacyRate` in the request body.
+- `PATCH /states/:id/gdp` : Update only the GDP of a specific state. Requires `gdp` in the request body.
+- `PATCH /states/:id` : Update multiple fields of a specific state partially.
+- `DELETE /states/:id` : Delete a state by its ID.
+- `DELETE /states/name/:stateName` : Delete a state by its name.
+- `DELETE /states/low-literacy/:percentage` : Delete states with a literacy rate lower than the specified percentage.
+
+## Sample API URLs
+You can test the API endpoints locally after starting the server:
+- **Get all states:** `http://localhost:3000/states`
+- **Get state by ID (e.g., ID 1):** `http://localhost:3000/states/1`
+- **Get state with highest GDP:** `http://localhost:3000/states/highest-gdp`
+- **Add a new state:** `http://localhost:3000/states` (POST request with JSON body)
+- **Replace a state:** `http://localhost:3000/states/1` (PUT request with JSON body)
+- **Update state budget:** `http://localhost:3000/states/1/budget` (PUT request with JSON body `{"annualBudget": 300000}`)
+- **Update state literacy:** `http://localhost:3000/states/1/literacy` (PATCH request with JSON body `{"literacyRate": 85.5}`)
+- **Delete a state by ID:** `http://localhost:3000/states/1` (DELETE request)
+- **Delete a state by name:** `http://localhost:3000/states/name/Goa` (DELETE request)
+
+## Steps to run locally
+1. Clone the repository to your local machine:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate to the `assignment-3` directory:
+   ```bash
+   cd assignment-3
+   ```
+3. Install the necessary dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the server:
+   ```bash
+   node index.js
+   ```
+5. Access the application in your browser or API client (like Postman) at:
+   ```      
+   http://localhost:3000
+   ```
+
+## Deployed link
+- **Live Server URL:** `https://assignments-nodejs-2.onrender.com/`
+- **Postman Documentation:** `https://documenter.getpostman.com/view/50840636/2sBXcHhyWb`
